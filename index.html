@@ -32,7 +32,7 @@
                     <h2>Integrating Izpack with Workstation provisioning</h2>
                     <p><a href="https://github.com/orgs/DSI-Ville-Noumea/people/adriens">Adrien Sales</a></br></p>
                 </section>
-                
+
                 <section>
                     <h3>Existing Workstation SCCM provisionings examples</h3>
                     <ul>
@@ -44,7 +44,7 @@
                         <li>Runtimes, Autocad, Java, etc...</li>
                     </ul>
                 </section>
-                
+
                 <section>
                     <h3>Workstation context : an increasing number of Web based applications</h3>
                     <ul>
@@ -55,7 +55,7 @@
                         <li>Actually no local SSO nor Cloud based identity management</li>
                     </ul>
                 </section>
-                
+
                 <section>
                     <h3>Consequences</h3>
                     <ul>
@@ -63,7 +63,7 @@
                         <li>Complexity for the end user to know which app to use with which browser</li>
                     </ul>
                 </section>
-                
+
                 <section>
                     <h3>Knowledge stored in SCCM</h3>
                     <ul>
@@ -72,16 +72,16 @@
                         <li>Users are actually grouped and continuously managed from SCCM for software deploying planning</li>
                     </ul>
                 </section>
-                
+
                 <section data-background="black">
                     <blockquote style="color:white">How to provide ready to use (and configurable)
                         install package to SCCM so they can be easily deployed.</blockquote>
                 </section>
-                
+
                 <section data-background="black">
                     <blockquote style="color:white">Who and how to build such packages.</blockquote>
                 </section>
-                
+
                 <section>
                     <h3>Opportunities</h3>
                     <ul>
@@ -92,7 +92,7 @@
                         <li>Measure debt (by code) : ie. apps that are stuck on a specific browser</li>
                     </ul>
                 </section>
-                
+
                 <section>
                     <h3>Technical background</h3>
                     <ul>
@@ -102,7 +102,7 @@
                         <li>Cross platform development</li>
                     </ul>
                 </section>
-                
+
                 <section>
                     <h3>Packaging (from maven)</h3>
                     Maven already used on personal projects to package a wide variety of things :
@@ -117,7 +117,7 @@
                 <section data-background="black">
                     <blockquote style="color:white">How to build a crossplatform (Windows, Mac, Linux, BSDs, ... ) installer ?</blockquote>
                 </section>
-                
+
                 <section>
                     <h3>Main idea</h3>
                     <p>Make a cross-platform java jar installer that would :</p>
@@ -129,14 +129,14 @@
                         <li>Embed resources like images, links, shortcuts in a single package</li>
                     </ul>
                 </section>
-                
+
                 <section>
                     <h3>Izpack</h3>
                     <img src="img/logo-izpack-medium.png"/>
                     <blockquote style="color:white">Package once. Deploy everywhere</blockquote>
                 </section>
-                
-                
+
+
                 <section>
                     <h3>Solution using izpack</h3>
                     <ul>
@@ -146,33 +146,106 @@
                         <li><a href="https://www.nuxeo.com/">nuxeo</a></li>
                     </ul>
                 </section>
-                
+
+                <section>
+                    <h3>Core installer architecture</h3>
+                    <ul>
+                        <li>License agreement : the end user must accept</li>
+                        <li>A core pack with common shortcuts every one needs to have (webmail, Intranet, Issue Tracker, Business Intelligence, ...)</li>
+                        <li>Dedicated pack by app so we can create dedicated installers</li>
+                    </ul>
+                </section>
+
                 <!-- Screenshots and visuals -->
+                <section>
+                    <h3>Benefits</h3>
+                    <ul>
+                        <li>Get apps shortcuts from your Desktop (full and fast text search from Start Menu)</li>
+                        <li>Don't have to think about which browser to open with which app : just focus on the app name</li>
+                    </ul>
+                </section>
                 
+                <!-- Linux KDE integrations -->
+                <section>
+                    <h3>Linux integration : specific app.</h3>
+                    <img src="img/KDE_Astre.png"/>
+                </section>
+                <section>
+                    <h3>Linux integration : all enterprise webapps shortcuts</h3>
+                    <img src="img/KDE_Mairie.png"/>
+                </section>
                 
+                <!-- Windows 10 integrations -->
+
+
                 <!-- Use cases -->
+
+                <!-- Dedicated install script with specific apps -->
+                <section>
+                    <h3>Get a customized install model with "Automatic Installation Script"</h3>
+                    <pre><code>
+<pack index="0" name="Agent Mairie" selected="true"/>
+<pack index="1" name="Portail Intranet" selected="true"/>
+<pack index="2" name="Easy Vista" selected="true"/>
+
+</com.izforge.izpack.panels.treepacks.TreePacksPanel>
+
+<createMenuShortcuts>true</createMenuShortcuts>
+<programGroup>Applications Mairie</programGroup>
+<createDesktopShortcuts>false</createDesktopShortcuts>
+<createStartupShortcuts>false</createStartupShortcuts>
+<shortcutType>user</shortcutType>
+</code></pre>
+                </section>
                 
+                <section>
+                    <h3>Integrate with SCCM</h3>
+                    
+                    <pre><code>
+java -jar installer.jar auto-install-profile-minimalist.xml
+java -jar installer.jar auto-install-profile-financial-tools.xml
+...
+</code></pre>
+                </section>
+
                 <!-- Full command line example with ttygif -->
                 <section>
                     <h3>From command line</h3>
-                    <pre>java -jar target/webapps-shortcuts-izpack.jar -console</pre>
+                    <pre><code>java -jar target/webapps-shortcuts-izpack.jar -console</code></pre>
                     <img src="img/tty.gif"/>
                 </section>
+
                 
-                <!-- Command line example with dedicated packs with multipe PCs -->
+
+
+                <!-- Scenario of Real demo on laptops -->
+
+
+                <!-- Other implementations possibilities-->
+                <section>
+                    <h3>Other install creation softwares</h3>
+                   <ul>
+                        <li>Nullsoft</li>
+                        <li>WiX</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Drwabacks</h3>
+                    <ul>
+                        <li>Not cross platform</li>
+                        <li>No continuous build on Travis</li>
+                        <li>Complex build environment to setup</li>
+                        <li>Relies on tech we are not using on a daily basis</li>
+                    </ul>
+                    </section>
                 
-                
-                <!-- Real demo on laptops -->
-                
-                
-                <!-- Integration with SCCM -->
-                
-                
-                
-                
-                
-                
-                
+
+
+
+
+
+
+
                 <section data-background="black">
                     <blockquote style="color:white">We are using izpack with maven as
                         part of our continous build at la Ville de Nouméa to package
@@ -180,8 +253,8 @@
                         bringing some DevOps skills in Workstation customization process.</blockquote>
                     <blockquote style="color:white">All that with a very short learning path and without any additional license cost.</blockquote>
                 </section>
-                
-                
+
+
             </div>
         </div>
 
