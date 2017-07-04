@@ -105,7 +105,7 @@
 
                 <section>
                     <h3>Packaging (from maven)</h3>
-                    Maven already used on personal projects to package a wide variety of things :
+                    Maven already used on personal projects to package :
                     <ul>
                         <li>jar (of course)</li>
                         <li>war</li>
@@ -138,7 +138,7 @@
 
 
                 <section>
-                    <h3>Solution using izpack</h3>
+                    <h3>Famous Solution using izpack</h3>
                     <ul>
                         <li><a href="www.jahia.com">jahia CMS</a></li>
                         <li><a href="https://spring.io/tools/sts">STS (Spring Tool Suite)</a></li>
@@ -153,6 +153,7 @@
                         <li>License agreement : the end user must accept</li>
                         <li>A core pack with common shortcuts every one needs to have (webmail, Intranet, Issue Tracker, Business Intelligence, ...)</li>
                         <li>Dedicated pack by app so we can create dedicated installers</li>
+                        <li>Very reduced scope of izpack installers : focus for now on shortcuts only</li>
                     </ul>
                 </section>
 
@@ -160,7 +161,7 @@
                 <section>
                     <h3>Benefits</h3>
                     <ul>
-                        <li>Get apps shortcuts from your Desktop (full and fast text search from Start Menu)</li>
+                        <li>Get apps shortcuts from your Desktop (full and fast text search from Start Menu : Win 7/10, KDE, ...)</li>
                         <li>Don't have to think about which browser to open with which app : just focus on the app name</li>
                     </ul>
                 </section>
@@ -183,7 +184,7 @@
                 <!-- Dedicated install script with specific apps -->
                 <section>
                     <h3>Get a customized install model with "Automatic Installation Script"</h3>
-                    <pre><code>
+                    <pre><code class="xml">
 <pack index="0" name="Agent Mairie" selected="true"/>
 <pack index="1" name="Portail Intranet" selected="true"/>
 <pack index="2" name="Easy Vista" selected="true"/>
@@ -227,6 +228,8 @@ java -jar installer.jar auto-install-profile-financial-tools.xml
                    <ul>
                         <li>Nullsoft</li>
                         <li>WiX</li>
+                        <li>Hand made powershells</li>
+                        <li>Chocolatey</li>
                     </ul>
                 </section>
                 <section>
