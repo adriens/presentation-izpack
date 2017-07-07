@@ -34,7 +34,7 @@
                 </section>
 
                 <section>
-                    <h3>Existing Workstation SCCM provisionings examples</h3>
+                    <h3>Existing Workstation SCCM provisionings scenari</h3>
                     <ul>
                         <li>Windows Install</li>
                         <li>Windows Upgrades (Windows to 10)</li>
@@ -111,7 +111,7 @@
                         <li>war</li>
                         <li>debian packages</li>
                         <li>rpm packages</li>
-                        <li>Any complex java based (containing jars) application</li>
+                        <li>Any complex (mix of jars, images, shell, links, ...) java based application</li>
                     </ul>
                 </section>
                 <section data-background="black">
@@ -120,7 +120,7 @@
 
                 <section>
                     <h3>Main idea</h3>
-                    <p>Make a cross-platform java jar installer that would :</p>
+                    <p>Make a cross-platform installer that would :</p>
                     <ul>
                         <li>Only require a java runtime to be installed</li>
                         <li>Built only from code (no click, no GUI)</li>
@@ -153,7 +153,7 @@
                         <li>License agreement : the end user must accept</li>
                         <li>A core pack with common shortcuts every one needs to have (webmail, Intranet, Issue Tracker, Business Intelligence, ...)</li>
                         <li>Dedicated pack by app so we can create dedicated installers</li>
-                        <li>Very reduced scope of izpack installers : focus for now on shortcuts only</li>
+                        <li>Very reduced scope of izpack features : focus on shortcuts only</li>
                     </ul>
                 </section>
 
@@ -230,6 +230,26 @@ java -jar installer.jar auto-install-profile-financial-tools.xml
                         <li>WiX</li>
                         <li>Hand made powershells</li>
                         <li>Chocolatey</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>First start on custom poweshells (and why it failed)</h3>
+                    <ul>
+                        <li>Mount a dedicated Windows dev environment</li>
+                        <li>Manually create shortcuts</li>
+                        <li>Need to sign poweshells script to make the deployable</li>
+                        <li>Need to put shared resources on the LAN (images, ...)</li>
+                        <li>Not very easy to release</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Hand made (by click) msi : Smart Packager Pro (LANDPARK)</h3>
+                    <ul>
+                        <li>Not free</li>
+                        <li>No continuous build</li>
+                        <li>Pure Windows</li>
+                        <li>Click based</li>
+                        <li>Not enough human resources</li>
                     </ul>
                 </section>
                 <section>
