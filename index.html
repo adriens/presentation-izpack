@@ -1,303 +1,352 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-        <title>Industrializing with SCCM/Izpack</title>
+    <title>Industrializing with SCCM/Izpack</title>
 
-        <link rel="stylesheet" href="css/reveal.css">
-        <link rel="stylesheet" href="css/theme/moon.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/moon.css">
 
-        <!-- Theme used for syntax highlighting of code -->
-        <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
 
-        <!-- Printing and PDF exports -->
-        <script>
-            var link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.type = 'text/css';
-            link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
-            document.getElementsByTagName('head')[0].appendChild(link);
-        </script>
-    </head>
-    <body>
-        <div class="reveal">
-            <div class="slides">
-                <section data-background="img/cover.jpeg">
-                    <blockquote style="color:white">Izpack : a possible path to a better Workstations provisioning.</blockquote>
-                </section>
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section data-background="img/cover.jpeg">
+            <blockquote style="color:white">Izpack : a possible path to a better Workstations provisioning.</blockquote>
+        </section>
 
-                <section data-background="black">
-                    <h2>Integrating Izpack with Workstation provisioning</h2>
-                    <p><a href="https://github.com/orgs/DSI-Ville-Noumea/people/adriens">Adrien Sales</a></br></p>
-                </section>
+        <section data-background="black">
+            <h2>Integrating Izpack with Workstation provisioning</h2>
+            <p><a href="https://github.com/orgs/DSI-Ville-Noumea/people/adriens">Adrien Sales</a></br></p>
+        </section>
 
-                <section>
-                    <h3>Existing Workstation SCCM provisionings scenari</h3>
-                    <ul>
-                        <li>Windows Install</li>
-                        <li>Windows Upgrades (Windows to 10)</li>
-                        <li>Outlook, Office : install and upgrades</li>
-                        <li>Web Browsers : IE, Firefox, Chrome</li>
-                        <li>Web Browsers Upgrades</li>
-                        <li>Runtimes, Autocad, Java, etc...</li>
-                    </ul>
-                </section>
+        <section>
+            <h3>Existing Workstation SCCM provisionings scenari</h3>
+            <ul>
+                <li>Windows Install</li>
+                <li>Windows Upgrades (Windows to 10)</li>
+                <li>Outlook, Office : install and upgrades</li>
+                <li>Web Browsers : IE, Firefox, Chrome</li>
+                <li>Web Browsers Upgrades</li>
+                <li>Runtimes, Autocad, Java, etc...</li>
+            </ul>
+        </section>
 
-                <section>
-                    <h3>Workstation context : an increasing number of Web based applications</h3>
-                    <ul>
-                        <li>Custom Web developments</li>
-                        <li>On premise ERP</li>
-                        <li>Outside hosted web apps with specific browser requirements</li>
-                        <li>SaaS cloud based applications</li>
-                        <li>Actually no local SSO nor Cloud based identity management</li>
-                    </ul>
-                </section>
+        <section>
+            <h3>Workstation context : an increasing number of Web based applications</h3>
+            <ul>
+                <li>Custom Web developments</li>
+                <li>On premise ERP</li>
+                <li>Outside hosted web apps with specific browser requirements</li>
+                <li>SaaS cloud based applications</li>
+                <li>Actually no local SSO nor Cloud based identity management</li>
+            </ul>
+        </section>
 
-                <section>
-                    <h3>Consequences</h3>
-                    <ul>
-                        <li>Technical debt. inheritance as some apps do not support all web browsers</li>
-                        <li>Complexity for the end user to know which app to use with which browser</li>
-                    </ul>
-                </section>
+        <section>
+            <h3>Consequences</h3>
+            <ul>
+                <li>Technical debt. inheritance as some apps do not support all web browsers</li>
+                <li>Complexity for the end user to know which app to use with which browser</li>
+            </ul>
+        </section>
 
-                <section>
-                    <h3>Knowledge stored in SCCM</h3>
-                    <ul>
-                        <li>User/Group Centric approach</li>
-                        <li>SCCM knows which software to install, where and who for</li>
-                        <li>Users are actually grouped and continuously managed from SCCM for software deploying planning</li>
-                    </ul>
-                </section>
+        <section>
+            <h3>Knowledge stored in SCCM</h3>
+            <ul>
+                <li>User/Group Centric approach</li>
+                <li>SCCM knows which software to install, where and who for</li>
+                <li>Users are actually grouped and continuously managed from SCCM for software deploying planning</li>
+            </ul>
+        </section>
 
-                <section data-background="black">
-                    <blockquote style="color:white">How to provide ready to use (and configurable)
-                        install package to SCCM so they can be easily deployed.</blockquote>
-                </section>
+        <section data-background="black">
+            <blockquote style="color:white">How to provide ready to use (and configurable)
+                install package to SCCM so they can be easily deployed.</blockquote>
+        </section>
 
-                <section data-background="black">
-                    <blockquote style="color:white">Who and how to build such packages.</blockquote>
-                </section>
+        <section data-background="black">
+            <blockquote style="color:white">Who and how to build such packages.</blockquote>
+        </section>
 
-                <section>
-                    <h3>Opportunities</h3>
-                    <ul>
-                        <li>Bring some integration between devs and Workstation maintainers</li>
-                        <li>Generate more knowledge</li>
-                        <li>Workstation tuned for end user</li>
-                        <li>Bring more collaboration between teams</li>
-                        <li>Measure debt (by code) : ie. apps that are stuck on a specific browser</li>
-                    </ul>
-                </section>
+        <section>
+            <h3>Opportunities</h3>
+            <ul>
+                <li>Bring some integration between devs and Workstation maintainers</li>
+                <li>Generate more knowledge</li>
+                <li>Workstation tuned for end user</li>
+                <li>Bring more collaboration between teams</li>
+                <li>Measure debt (by code) : ie. apps that are stuck on a specific browser</li>
+            </ul>
+        </section>
 
-                <section>
-                    <h3>Technical background</h3>
-                    <ul>
-                        <li>Java Developers</li>
-                        <li>Continuous build/release for everything (Github/Travis)</li>
-                        <li>Build everything with maven</li>
-                        <li>Cross platform development</li>
-                    </ul>
-                </section>
+        <section>
+            <h3>Technical background</h3>
+            <ul>
+                <li>Java Developers</li>
+                <li>Continuous build/release for everything (Github/Travis)</li>
+                <li>Build everything with maven</li>
+                <li>Cross platform development</li>
+            </ul>
+        </section>
 
-                <section>
-                    <h3>Packaging (from maven)</h3>
-                    Maven already used on personal projects to package :
-                    <ul>
-                        <li>jar (of course)</li>
-                        <li>war</li>
-                        <li>debian packages</li>
-                        <li>rpm packages</li>
-                        <li>Any complex (mix of jars, images, shell, links, ...) java based application</li>
-                    </ul>
-                </section>
-                <section data-background="black">
-                    <blockquote style="color:white">How to build a crossplatform (Windows, Mac, Linux, BSDs, ... ) installer ?</blockquote>
-                </section>
+        <section>
+            <h3>Packaging (from maven)</h3>
+            Maven already used on personal projects to package :
+            <ul>
+                <li>jar (of course)</li>
+                <li>war</li>
+                <li>debian packages</li>
+                <li>rpm packages</li>
+                <li>Any complex (mix of jars, images, shell, links, ...) java based application</li>
+            </ul>
+        </section>
+        <section data-background="black">
+            <blockquote style="color:white">How to build a crossplatform (Windows, Mac, Linux, BSDs, ... ) installer ?</blockquote>
+        </section>
 
-                <section>
-                    <h3>Main idea</h3>
-                    <p>Make a cross-platform installer that would :</p>
-                    <ul>
-                        <li>Only require a java runtime to be installed</li>
-                        <li>Built only from code (no click, no GUI)</li>
-                        <li>Be customizable ie. provide options during install process</li>
-                        <li>Be runnable/scriptable for automated deployment</li>
-                        <li>Embed resources like images, links, shortcuts in a single package</li>
-                    </ul>
-                </section>
+        <section>
+            <h3>Main idea</h3>
+            <p>Make a cross-platform installer that would :</p>
+            <ul>
+                <li>Only require a java runtime to be installed</li>
+                <li>Built only from code (no click, no GUI)</li>
+                <li>Be customizable ie. provide options during install process</li>
+                <li>Be runnable/scriptable for automated deployment</li>
+                <li>Embed resources like images, links, shortcuts in a single package</li>
+            </ul>
+        </section>
 
-                <section>
-                    <h3>Izpack</h3>
-                    <img src="img/logo-izpack-medium.png"/>
-                    <blockquote style="color:white">Package once. Deploy everywhere</blockquote>
-                </section>
-
-
-                <section>
-                    <h3>Famous Solution using izpack</h3>
-                    <ul>
-                        <li><a href="www.jahia.com">jahia CMS</a></li>
-                        <li><a href="https://spring.io/tools/sts">STS (Spring Tool Suite)</a></li>
-                        <li><a href="http://www.scala-lang.org/">Scala</a></li>
-                        <li><a href="https://www.nuxeo.com/">nuxeo</a></li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h3>Core installer architecture</h3>
-                    <ul>
-                        <li>License agreement : the end user must accept</li>
-                        <li>A core pack with common shortcuts every one needs to have (webmail, Intranet, Issue Tracker, Business Intelligence, ...)</li>
-                        <li>Dedicated pack by app so we can create dedicated installers</li>
-                        <li>Very reduced scope of izpack features : focus on shortcuts only</li>
-                    </ul>
-                </section>
-
-                <!-- Screenshots and visuals -->
-                <section>
-                    <h3>Benefits</h3>
-                    <ul>
-                        <li>Get apps shortcuts from your Desktop (full and fast text search from Start Menu : Win 7/10, KDE, ...)</li>
-                        <li>Don't have to think about which browser to open with which app : just focus on the app name</li>
-                    </ul>
-                </section>
-                
-                <!-- Linux KDE integrations -->
-                <section>
-                    <h3>Linux integration : specific app.</h3>
-                    <img src="img/KDE_Astre.png"/>
-                </section>
-                <section>
-                    <h3>Linux integration : all enterprise webapps shortcuts</h3>
-                    <img src="img/KDE_Mairie.png"/>
-                </section>
-                
-                <!-- Windows 10 integrations -->
+        <section>
+            <h3>Izpack</h3>
+            <img src="img/logo-izpack-medium.png"/>
+            <blockquote style="color:white">Package once. Deploy everywhere</blockquote>
+        </section>
 
 
-                <!-- Use cases -->
+        <section>
+            <h3>Famous Solution using izpack</h3>
+            <ul>
+                <li><a href="www.jahia.com">jahia CMS</a></li>
+                <li><a href="https://spring.io/tools/sts">STS (Spring Tool Suite)</a></li>
+                <li><a href="http://www.scala-lang.org/">Scala</a></li>
+                <li><a href="https://www.nuxeo.com/">nuxeo</a></li>
+            </ul>
+        </section>
 
-                <!-- Dedicated install script with specific apps -->
-                <section>
-                    <h3>Get a customized install model with "Automatic Installation Script"</h3>
-                    <pre><code class="xml">
-<pack index="0" name="Agent Mairie" selected="true"/>
-<pack index="1" name="Portail Intranet" selected="true"/>
-<pack index="2" name="Easy Vista" selected="true"/>
+        <section>
+            <h3>Core installer architecture</h3>
+            <ul>
+                <li>License agreement : the end user must accept</li>
+                <li>A core pack with common shortcuts every one needs to have (webmail, Intranet, Issue Tracker, Business Intelligence, ...)</li>
+                <li>Dedicated pack by app so we can create dedicated installers</li>
+                <li>Very reduced scope of izpack features : focus on shortcuts only</li>
+            </ul>
+        </section>
 
-</com.izforge.izpack.panels.treepacks.TreePacksPanel>
+        <!-- Screenshots and visuals -->
+        <section>
+            <h3>Benefits</h3>
+            <ul>
+                <li>Get apps shortcuts from your Desktop (full and fast text search from Start Menu : Win 7/10, KDE, ...)</li>
+                <li>Don't have to think about which browser to open with which app : just focus on the app name</li>
+            </ul>
+        </section>
 
-<createMenuShortcuts>true</createMenuShortcuts>
+        <!-- Linux KDE integrations -->
+        <section>
+            <h3>Linux KDE integration : specific app.</h3>
+            <img src="img/KDE_Astre.png"/>
+        </section>
+        <section>
+            <h3>Linux KDE integration : all enterprise webapps shortcuts</h3>
+            <img src="img/KDE_Mairie.png"/>
+        </section>
+
+        <!-- Linux Cinnamon integrations -->
+        <section>
+            <h3>Linux Cinnamon integration : specific app.</h3>
+            <img src="img/cinnamon_mairie.png" height="400"/>
+        </section>
+        <section>
+            <h3>Linux integration : all enterprise webapps shortcuts</h3>
+            <img src="img/cinnamon_startup_menu.png" height="400"/>
+        </section>
+        <section>
+            <h3>Linux integration : desktop shortcut</h3>
+            <img src="img/cinnamon_desktop_icons.png" />
+        </section>
+
+        <!-- Windows 10 integrations -->
+        <section>
+            <h3>Windows 10 integrations : all enterprise webapps shortcuts</h3>
+            <img src="img/win10_startup_menu.png" height="400"/>
+        </section>
+
+        <!-- Use cases -->
+
+        <!-- Dedicated install script with specific apps -->
+        <section>
+            <h3>Get a customized install model with "Automatic Installation Script"</h3>
+            <pre><code class="xml">
+<pack index="0" name="Agent Mairie" selected="true" />
+<pack index="1" name="Portail Intranet" selected="true" />
+<pack index="2" name="Easy Vista" selected="true" />
+
+                </com.izforge.izpack.panels.treepacks.TreePacksPanel>
+
+                <createMenuShortcuts>true</createMenuShortcuts>
 <programGroup>Applications Mairie</programGroup>
 <createDesktopShortcuts>false</createDesktopShortcuts>
 <createStartupShortcuts>false</createStartupShortcuts>
 <shortcutType>user</shortcutType>
 </code></pre>
-                </section>
-                
-                <section>
-                    <h3>Integrate with SCCM</h3>
-                    
-                    <pre><code>
+        </section>
+
+        <section>
+            <h3>Integrate with SCCM</h3>
+
+            <pre><code>
 java -jar installer.jar auto-install-profile-minimalist.xml
 java -jar installer.jar auto-install-profile-financial-tools.xml
 ...
 </code></pre>
-                </section>
+        </section>
 
-                <!-- Full command line example with ttygif -->
-                <section>
-                    <h3>From command line</h3>
-                    <pre><code>java -jar target/webapps-shortcuts-izpack.jar -console</code></pre>
-                    <img src="img/tty.gif"/>
-                </section>
+        <!-- Full command line example with ttygif -->
+        <section>
+            <h3>From command line (interactive mode)</h3>
+            <pre><code>java -jar target/webapps-shortcuts-izpack.jar -console</code></pre>
+            <img src="img/tty.gif"/>
+        </section>
 
-                
+        <!-- Scenario of Real demo on laptops -->
+        <section>
+            <section>
+                <h3>Demonstration : Interactive Installations with a GUI</h3>
+                <ul>
+                    <li>"End-user" mode</li>
+                    <li>Install by clicking</li>
+                    <li>This will used by most users on Windows, MacOSX and Linux with an running X Server.</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Demonstration : Interactive Installations with a GUI</h3>
+                <ul>
+                    <li>Install packs Agent Mairie and DPM for user salad74</li>
+                    <li>Logon with salad74</li>
+                    <li>Check shortcuts on desktop</li>
+                    <li>Check shortcuts on startup menu</li>
+                    <li>Check files in "Programs Files" folder</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h3>Demonstration : Unattended Installations Using Records of Previous Sessions</h3>
+                <ul>
+                    <li>"Admin" mode</li>
+                    <li>Install through XML file</li>
+                    <li>It reproduces the same installation again, applying all previous user inputs automatically. No interaction is required any longer.</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Demonstration : Unattended Installations Using Records of Previous Sessions</h3>
+                <ul>
+                    <li>Install packs Agent Mairie and SGAU for user barmi83 with xml file</li>
+                    <li>Logon with barmi83</li>
+                    <li>Check shortcuts on desktop</li>
+                    <li>Check shortcuts on startup menu</li>
+                    <li>Check files in "Programs Files" folder</li>
+                </ul>
+            </section>
+
+        </section>
+
+        <!-- Other implementations possibilities-->
+        <section>
+            <h3>Other install creation softwares</h3>
+            <ul>
+                <li>Nullsoft</li>
+                <li>WiX</li>
+                <li>Hand made powershells</li>
+                <li>Chocolatey</li>
+                <li>install4j</li>
+            </ul>
+        </section>
+        <section>
+            <h3>First start on custom poweshells (and why it failed)</h3>
+            <ul>
+                <li>Mount a dedicated Windows dev environment</li>
+                <li>Manually create shortcuts</li>
+                <li>Need to sign powershells script to make the deployable</li>
+                <li>Need to put shared resources on the LAN (images, ...)</li>
+                <li>Not very easy to release</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Hand made (by click) msi : Smart Packager Pro (LANDPARK)</h3>
+            <ul>
+                <li>Not free</li>
+                <li>No continuous build</li>
+                <li>Pure Windows</li>
+                <li>Click based</li>
+                <li>Not enough human resources</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Drawbacks</h3>
+            <ul>
+                <li>Not cross platform</li>
+                <li>No continuous build on Travis</li>
+                <li>Complex build environment to setup</li>
+                <li>Relies on tech we are not using on a daily basis</li>
+            </ul>
+        </section>
+
+        <section data-background="black">
+            <blockquote style="color:white">We are using izpack with maven as
+                part of our continous build at la Ville de Nouméa to package
+                our Web applications on people Desktops, integrated with SCCM, hence
+                bringing some DevOps skills in Workstation customization process.</blockquote>
+            <blockquote style="color:white">All that with a very short learning path and without any additional license cost.</blockquote>
+        </section>
 
 
-                <!-- Scenario of Real demo on laptops -->
+    </div>
+</div>
 
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
 
-                <!-- Other implementations possibilities-->
-                <section>
-                    <h3>Other install creation softwares</h3>
-                   <ul>
-                        <li>Nullsoft</li>
-                        <li>WiX</li>
-                        <li>Hand made powershells</li>
-                        <li>Chocolatey</li>
-                    </ul>
-                </section>
-                <section>
-                    <h3>First start on custom poweshells (and why it failed)</h3>
-                    <ul>
-                        <li>Mount a dedicated Windows dev environment</li>
-                        <li>Manually create shortcuts</li>
-                        <li>Need to sign powershells script to make the deployable</li>
-                        <li>Need to put shared resources on the LAN (images, ...)</li>
-                        <li>Not very easy to release</li>
-                    </ul>
-                </section>
-                <section>
-                    <h3>Hand made (by click) msi : Smart Packager Pro (LANDPARK)</h3>
-                    <ul>
-                        <li>Not free</li>
-                        <li>No continuous build</li>
-                        <li>Pure Windows</li>
-                        <li>Click based</li>
-                        <li>Not enough human resources</li>
-                    </ul>
-                </section>
-                <section>
-                    <h3>Drawbacks</h3>
-                    <ul>
-                        <li>Not cross platform</li>
-                        <li>No continuous build on Travis</li>
-                        <li>Complex build environment to setup</li>
-                        <li>Relies on tech we are not using on a daily basis</li>
-                    </ul>
-                    </section>
-                
-
-
-
-
-
-
-
-                <section data-background="black">
-                    <blockquote style="color:white">We are using izpack with maven as
-                        part of our continous build at la Ville de Nouméa to package
-                        our Web applications on people Desktops, integrated with SCCM, hence
-                        bringing some DevOps skills in Workstation customization process.</blockquote>
-                    <blockquote style="color:white">All that with a very short learning path and without any additional license cost.</blockquote>
-                </section>
-
-
-            </div>
-        </div>
-
-        <script src="lib/js/head.min.js"></script>
-        <script src="js/reveal.js"></script>
-
-        <script>
-            // More info about config & dependencies:
-            // - https://github.com/hakimel/reveal.js#configuration
-            // - https://github.com/hakimel/reveal.js#dependencies
-            Reveal.initialize({
-                dependencies: [
-                    {src: 'plugin/markdown/marked.js'},
-                    {src: 'plugin/markdown/markdown.js'},
-                    {src: 'plugin/notes/notes.js', async: true},
-                    {src: 'plugin/highlight/highlight.js', async: true, callback: function () {
-                            hljs.initHighlightingOnLoad();
-                        }}
-                ]
-            });
-        </script>
-    </body>
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }}
+        ]
+    });
+</script>
+</body>
 </html>
