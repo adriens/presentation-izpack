@@ -234,11 +234,11 @@ java -jar installer.jar auto-install-profile-financial-tools.xml
             <section>
                 <h3>Demonstration : Interactive Installations with a GUI</h3>
                 <ul>
-                    <li>Install packs Agent Mairie and DPM for user salad74</li>
-                    <li>Logon with salad74</li>
-                    <li>Check shortcuts on desktop</li>
-                    <li>Check shortcuts on startup menu</li>
-                    <li>Check files in "Programs Files" folder</li>
+                    <li>Install packs Agent Mairie</li>
+                    <li>Check shortcuts on "Desktop" and "Startup menu"</li>
+                    <li>Check files in "Programs Files\Applications Mairie" folder</li>
+                    <li>Check "Uninstaller" folder and uninstall</li>
+                    <li>Check "Programs Files" folder and "Desktop"</li>
                 </ul>
             </section>
         </section>
@@ -247,7 +247,7 @@ java -jar installer.jar auto-install-profile-financial-tools.xml
             <section>
                 <h3>Demonstration : Unattended Installations Using Records of Previous Sessions</h3>
                 <ul>
-                    <li>"Admin" mode</li>
+                    <li>"Admin" mode : the one the SIE will use</li>
                     <li>Install through XML file</li>
                     <li>It reproduces the same installation again, applying all previous user inputs automatically. No interaction is required any longer.</li>
                 </ul>
@@ -255,11 +255,20 @@ java -jar installer.jar auto-install-profile-financial-tools.xml
             <section>
                 <h3>Demonstration : Unattended Installations Using Records of Previous Sessions</h3>
                 <ul>
-                    <li>Install packs Agent Mairie and SGAU for user barmi83 with xml file</li>
-                    <li>Logon with barmi83</li>
+                    <li>Install packs Agent Mairie and SGAU with xml file</li>
                     <li>Check shortcuts on desktop</li>
                     <li>Check shortcuts on startup menu</li>
                     <li>Check files in "Programs Files" folder</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Demonstration : Unattended Installations Using Records of Previous Sessions</h3>
+                <ul>
+                    <li>Check PDC documentation shortcut</li>
+                    <li>The documentation has been uploaded with Travis on Owncloud</li>
+                    <li>The PDF is not part of the installer</li>
+                    <li>Users always access the last documentation version</li>
+                    <li>We don't need the SIE to re-deploy the new documentation</li>
                 </ul>
             </section>
 
